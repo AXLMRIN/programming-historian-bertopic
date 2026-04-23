@@ -1,0 +1,97 @@
+# Explorer et classifier les thèmes d'un corpus de textes avec BERTopic et Python
+
+## Intro
+
+### Objectifs de la leçon 
+
+- Introduction aux méthodes de topic modelling: Quelles méthodes existent ? Pour quelles tâches ? Dans quels contextes ?
+- Introduire les concepts structurants de la librairie, et illustrer son utilisation
+- Illustrer les commandes et visualisations principales
+- Sensibiliser aux bonnes pratiques pour faciliter la reproductibilité et l'usage des modèles de langue.
+
+### Prérequis 
+
+> We don’t assume that you have any knowledge about NLP and try our best to explain every step in an agnostic manner. We also provide numerous references for those who want to dig deeper.
+> 
+> Nevertheless, you will need to have some notions of Python. If you need to refresh your Python skills, you can use Lino Galiana’s courses. We assume that:
+> 
+> - you have a working environment and can install packages
+> - you know the basic syntax of Python (functions, variables, if-statements, for loops) and you’re comfortable enough with Pandas to load your documents and proceed to simple manipulations such as creating, dropping and renaming columns and rows.
+
+<!-- TODO: Proposer des lectures avant de se lancer -->
+
+# Matériel disponible, et environnement virtuel 
+
+Matériel disponible : [Zenodo](https://zenodo.org/records/17936091)
+
+Environnement virtuel 
+
+```txt
+bertopic==0.17.3
+datasets==4.3.0
+hdbscan==0.8.40
+numpy==2.3.5
+pandas==2.3.3
+plotly==6.3.1
+scikit_learn==1.8.0
+stopwordsiso==0.6.1
+transformers==4.52.4
+umap_learn==0.5.7
+```
+
+## Le topic modelling, une tâche répendue en sciences sociales
+
+- accroche: 
+    - What are the main issues addressed in a set of documents? Are those documents similar or discussing different matters? What is the most important topic? Delineating the main themes in a collection of documents is a common task in social sciences, particularly when exploring a new corpus.
+- Histoire du topic modelling
+    - Pendant longtemps ça s'est fait avec des LDAs + décrire le but + donner des sources et décrire leur recherche
+    - D'autres méthodes existent: Mentionner le NMF et LSA, Top2Vec ([ref](https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5/#e768) + [papier comparaison](https://www.frontiersin.org/journals/sociology/articles/10.3389/fsoc.2022.886498/full) dénigré par Julien m'enfin bon)
+    - Définir ce qu'est BERTopic (bibliothèque Python en open source ...)
+    - Introduire BERTopic en partant de l'intuition 
+    - donner des exemples de sources et montrer que ça prend de l'importance
+- Introduction du contenu de la leçon  
+    - Plan
+    - Introduction au jeu de données et au cas d'étude 
+
+## Comprendre chaque étape de la pipeline
+
+- Introduire les entrées et sorties du topic model
+
+![](./assets/ins-and-outs-sketch.jpg){width=30% fig-align="center"}
+
+> The transformation produces two outputs.
+>
+> - The topic variable is a list containing integers: for each document, the integer represents the topic/group it belongs to. In our case, topic = [0, 0, 1] as the first 2 documents mention cats, whereas the last document is about the Empire State Building.
+> - The probabilities variable is a list of floats: for each document, the float represents how close it is to the topic.
+
+|   Topic |   Count | Name                                 | Representation                                                                     |
+|---:|---:|:---|:---|
+|       0 |  1601 | Physics and Applied Mathematics      | model study material property method phase surface field process thesis            |
+|       1 |  1275 | Biology and Health Research            | cell gene protein study expression role species response involve mouse             |
+|       2 |  1156 | Political Sciences, Law and Geography             | law legal study french language international teacher analysis public social       |
+|       3 |  1030 | Data Science         | propose datum model method base approach network thesis application algorithm      |
+|       4 |  631  | History and History of Art     | literary century study writing art time author history narrative period            |
+|       5 |  202  | Mathematics            | graph prove study space class thesis chapter theorem random theory                 |
+|       6 |  328  | Psychology et Child Health          | study child patient infant adolescent disorder preterm social age intervention     |
+|       7 |  105  | Economy      | monetary bank policy economic chapter financial country banking credit growth      |
+|       8 |  172  | Chemistry and Nanotechnologies | emulsion hydrogel microgels casein surface collagen property droplet quercetin gel |
+
+
+: Topic information of the French theses after tuning the topic model 
+{#tbl-final-example tbl-colwidths="[10, 20, 20,50]"}
+
+![](./assets/final.jpg){width=30% fig-align="center"}
+
+- Expliquer chaque étape succintement
+
+> Under the hood, BERTopic does three main steps:
+> 
+> - Generate a mathematical representation of each document that captures the semantic properties — the embeddings.
+> - Based on the embeddings, identify groups of documents that are semantically close (this action is called clustering). The hope is that these groups represent latent topics of the corpus.
+> - For each identified topic/group, retrieve keywords that best describe the specificity of each topic.
+
+- Renvoyer vers d'autres ressources 
+
+## Use case
+
+## Conclusion

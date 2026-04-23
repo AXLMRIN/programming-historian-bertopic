@@ -1,22 +1,22 @@
-# Intro
-- Situer la famille du topic modelling (histoire, application recherche) et comparer BERTopic / LDA
-- Brève histoire de Bertopic
-# Understand the ins and outs
-- Out-of the box; schema what to expect
-- Understand each step
-# Use case 
-- Introduction au jeu de données (oublie le prétraitement) 
-- Show case des résultats
-- Pipeline de fit -> toucher sur les principaux paramètres et comment les choisir
-- Présentation des résultats (lire les graphes) 
-- Sauvegarder les données + stats descriptive
-# Conclusion 
-- Ouverture sur question de l’évaluation
-- Ouverture sur la gestion plus fine des groupes (merge)
-- Ouverture sur la reproductibilité
-- Renvoyer vers le tutoriel complet
+# Sommaire
 
-# Soumission
+- Intro
+    - Situer la famille du topic modelling (histoire, application recherche) et comparer BERTopic / LDA
+    - Brève histoire de Bertopic
+- Understand the ins and outs
+    - Out-of the box; schema what to expect
+    - Understand each step
+- Use case 
+    - Introduction au jeu de données (oublie le prétraitement) 
+    - Show case des résultats
+    - Pipeline de fit -> toucher sur les principaux paramètres et comment les choisir
+    - Présentation des résultats (lire les graphes) 
+    - Sauvegarder les données + stats descriptive
+- Conclusion 
+    - Ouverture sur question de l’évaluation
+    - Ouverture sur la gestion plus fine des groupes (merge)
+    - Ouverture sur la reproductibilité
+    - Renvoyer vers le tutoriel complet
 
 # Proposition de leçon pour Programming Historian (édition française)
 
@@ -29,6 +29,7 @@ Nom : Émilien Schultz
 Adresse mail : emilien.schultz@ensae.fr
 
 Quel type de proposition souhaitez-vous faire ? 
+
 - [x] Une leçon originale en français *Répondez aux questions de la section 2*
 - [ ] Une traduction en français d'une leçon originale en anglais, espagnol ou portugais *Répondez aux questions de la section 3*
 
