@@ -145,9 +145,122 @@ Nous ne couvrons pas l'étape optionnelle n°7. Cette étape propose d'utiliser 
 
 ### Introduction au jeu de données 
 
+Nous illustrons notre tutoriel en utilisant le registre des thèses mis à disposition par l'État français sur le site [data.gouv.fr](https://www.data.gouv.fr/datasets/theses-soutenues-en-france-depuis-1985/) et qui répertorie l'ensemble des thèses défendues en France depuis 1985. Nous cherchons donc à explorer ce jeu de données afin de retrouver les grandes disciplines explorées par les doctorant.e.s en France à partir de leurs résumés. Ce registre a été plusieurs fois convoqué par la recherche pour étudier XXX. Il a l'avantage d'être relativement propre, avec peu de résumés manquants et des métadonnées qui nous seront utiles pour vérifier les résultats du topic model.
+
+Ce jeu de données a été nettoyés par nos soins[^info-nettoyage], le nouveau jeu de données peut être téléchargé sur le dépot [Zenodo](). Nous avons tiré aléatoirement 6500 lignes avec une stratification par année. Nous avons choisi de nous concentrer sur les années 2010-2022 pour des raisons de qualité des données.
+
+[^info-nettoyage]: La procédure de nettoyage des données est renseignée [ici (written in English)](https://css-polytechnique.github.io/css-ipp-materials/pages/techy-notes.html#curations-of-the-original-dataset).
+
+Une étape majeur pour le topic modelling est le prétraitement des textes. Nous listons quelques pré-traitements : 
+
+- Qualité des textes: Il est important de connaître son jeu de données en le parcourant rapidement. Notamment, il peut contenir des artefacts qui peuvent bruiter les plongements (balises HTML, défauts d'encodage (i.e. accents mal repérés) ...). La définition du "bruit" dépend de votre question de recherche, par exemple vous pourriez décider de garder ou pas les emojis. Enfin, les modèles de plongements ne nécessitent pas de retirer les "stop words" comme ça pouvait être le cas avec d'autres méthodes; Nous souhaitons conserver les stop words ainsi que la ponctuation.
+- Éviter les doublons: Si votre jeu de données comporte de trop nombreux doublons, un document présent plusieurs fois peut devenir un thème à lui tout seul.
+- Homogénéité du corpus: Le topic modelling utilise les saillance les plus fortes pour distinguer les thèmes. Ainsi, des documents de plusieurs sources peuvent générer des thèmes différents si leurs formes divergent fortement (ton, longueur, densité d'information, etc...). Dépendemment de votre question de recherche, vous pouvez vouloir conserver ces différences, ou bien les exclure.
+- Language des documents: Dans la même veine que l'homogénéité discutée avant, la langue du document peut être une différente trop saillante. Une alternative est de traduire tous les textes dans une seule langue en amont.
+- Longueur des documents: Les modèles de plongement présentent une limite de taille de texte (aussi appelée la limite de contexte). Il est donc nécessaire d'accorder le choix du modèle de plongement avec notre corpus.
+
 ### Créer son premier topic model 
 
-### Lire et interpréter les résultats (graphes et tableaux)
+Pour commencer, chargons notre jeu de données: 
+
+```python
+import pandas as pd
+df = pd.read_csv("./data/theses-soutenues-curated-stratified.csv")
+```
+
+Le jeu de données présente plusieurs colonnes d'intérêt:
+
+- `CI`: un index.
+- `oai_set_specs`: un code de discipline, par exemple, `ddc:300` représente `Sciences sociales, sociologie et anthropologie`.
+- `resumes.en` et `resumes.fr`: les résumés des thèses en anglais et français
+
+D'autres colonnes existent (titre de la thèse, sujet proposé par l'auteur.ice); elles nous aideront à l'évaluation du modèle.
+
+Il nous suffit alors de choisir un modèle de plongement et créer une instance de `BERTopic` de la manière suivante: 
+
+```python 
+from bertopic import BERTopic 
+
+topic_model = BERTopic( 
+    language = "french", 
+    embedding_model =  "Alibaba-NLP/gte-multilingual-base"
+)
+```
+
+Puis de _"fit"_ le modèle sur nos données :
+
+```python 
+topic_model.fit(documents = df["resumes.fr"])
+```
+
+_Nota: la syntaxe `.fit`, `transform` et `fit_transform` reprend la syntaxe définie par Scikit-learn, l'une des premières librairies de Machine Learning et l'une des plus complète! La méthode `.fit` adapte un modèle à nos données, tandis que `.transform` permet d'utiliser le modèle pour faire des prédictions._
+
+Nous pouvons extraire les thèmes de la manière suivante: 
+
+```python 
+topics, probabilities = topic_model.transform(documents=df["resumes.fr"])
+```
+
+On obtient alors une liste de thèmes, assignant chaque thèse à un groupe, ainsi que des probabilités, un score traduisant la distance d'un document au groupe assigné.
+
+Nous pouvons extraire les informations des groupes comme ceci: 
+
+```python
+topic_model.get_topic_info()
+```
+
+|     |   Topic |   Count | Representation                                                                                                                                    |
+|----:|--------:|--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------|
+|   0 |      -1 |    2839 | ['de', 'la', 'et', 'des', 'les', 'en', 'le', 'une', 'dans', 'un']                                                                                 |
+|   1 |       0 |     170 | ['comportement', 'de', 'été', 'des', 'matériaux', 'la', 'est', 'en', 'par', 'essais']                                                             |
+|   2 |       1 |     155 | ['cellules', 'cancer', 'expression', 'patients', 'tumorale', 'dans', 'avons', 'de', 'tumeurs', 'que']                                             |
+|   3 |       2 |     153 | ['écoulement', 'est', 'de', 'fluide', 'un', 'méthode', 'pour', 'sont', 'la', 'écoulements']                                                       |
+|   4 |       3 |     145 | ['droit', 'juridique', 'droits', 'union', 'juge', 'international', 'européenne', 'il', 'la', 'du']                                                |
+'caractères', 'cardiodactylus', 'diversité', 'aee', 'myrte', 'morphologiques']            |
+| ... |     ... |      ... | ... |
+| 102 |     101 |      11 | ['arn', 'virus', 'polymérase', 'protéine', 'viral', 'coronavirus', 'génome', 'réplication', 'coiffe', 'protéines']                                |
+| 103 |     102 |      11 | ['tio2', 'photocatalytique', 'photocatalytiques', 'dégradation', 'photocatalyse', 'dégrader', 'acide', 'polluants', 'uv', 'fluoration']           |
+| 104 |     103 |      11 | ['frittage', 'céramiques', 'composites', 'sic', 'kaolins', 'zrc', 'propriétés', 'composition', 'pyc', 'phases']                                   |
+| 105 |     104 |      10 | ['électrique', 'permittivité', 'matériaux', 'diélectrique', 'champ', 'thermoélectriques', 'charges', 'composites', 'matériau', 'polymère']        |
+| 106 |     105 |      10 | ['tanins', 'composites', 'fibres', 'été', 'tanin', 'biosourcés', 'cab', 'lin', 'monomères', 'formulations']                                       |
+| 107 |     106 |      10 | ['finie', 'kcsm', 'systèmes', 'interaction', 'portée', 'noyaux', 'désintégration', 'particules', 'désordonnés', 'neutrinos']                      |
+
+: Topic information of the French theses after tuning the topic model 
+{tbl-colwidths="[10, 20, 20,50]"}
+
+La colonne représentation renseigne les mots clefs identifiés pour chaque thème. On observe que les mots clefs du groupe bruit (groupe n°-1) ne donnent aucune information. Pour les autres sujets, on retrouve une suite de mots cohérents, par exemple: 
+
+- "droit", "juridique", "juge", "international", "européenne" : ce groupe pourrait être représentatif d'un thème lié au Droit, et plus précisément sur les questions de relations internationnales.
+- "permittivité", "matériaux", "champ", "charges": ce groupe pourrait représenter un thème lié aux domaines de la Ingénierie, et plus précisément sur les effets électromagnétiques.
+- "bactéries", "souches", "antibiotiques": ce groupe pourrait représenter un thème lié aux domaines médicaux, et plus précisément sur la médicamentation.
+
+Ce tableau **n'est pas** une preuve que le topic model soit satisfaisant, pour l'affirmer, nous devrons explorer chacun des groupes plus en détails. Cependant, trouver des groupes de mots cohérents est un bon signe.
+
+On voit aussi que la majorité des documents sont classifiés comme "bruit". Ceci est le résultat normal de l'algorithme de clustering HDBSCAN qui se focalise sur des régions denses en premier lieu. Tous les thèmes comportent entre 10 et 200 documents, ce qui correspond à 0.1%, 3% du corpus entier. 
+
+Nous pouvons forcer l'assignation d'un thème pour chaque document avec la commande suivante: 
+
+```python 
+topics_reduced = topic_model.reduce_outliers(
+    documents = docs, 
+    topics = topics, 
+    probabilities = probabilities, 
+    embeddings = embeddings,
+    strategy="embeddings" 
+)
+```
+
+**Cette commande n'a pas pour effet de recalculer les mots clefs**
+
+### Afficher les résultats sous forme de graphe
+
+Dans cette section, on présente 3 graphes très pratiques pour explorer le topic model et commencer le travail d'évaluation. 
+
+**2D plot**
+
+La première chose qu'on souhaite visualiser est l'espace 
+
+### Mieux choisir ses hyper-paramètres
 
 ### Sauvegarder les données
 
