@@ -380,4 +380,7 @@ topic_model = BERTopic.load("./bertopic-default")
 
 ## Conclusion
 
-Ce tutoriel présente les bases théoriques nécessaires à la construction d'un outil de topic modelling.
+Ce tutoriel présente les bases théoriques nécessaires à la construction d'un outil de topic modelling. 
+
+** Evaluation
+
