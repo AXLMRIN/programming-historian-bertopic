@@ -354,6 +354,30 @@ topic_model.merge_topics(docs, topics_to_merge)
 
 ### Sauvegarder les données
 
-En dernier lieu on cherchera à sauvegarder nos données
+En dernier lieu on cherchera à sauvegarder le topic model grâce à la méthode `save`. On peut choisir de sauvegarder les informations du vectorizer avec `save_ctfidf` de la manière suivante: 
+
+```python 
+# ~ 500 Ko
+topic_model.save(
+    path = "./bertopic-default",
+    serialization = "safetensors",
+    save_ctfidf = False
+)
+
+# ~ 6Mo
+topic_model.save(
+    path = "./bertopic-default-with-ctfidf",
+    serialization = "safetensors",
+    save_ctfidf = True
+)
+```
+
+Pour réutiliser le modèle il suffit de le charger avec la commande suivante: 
+
+```python 
+topic_model = BERTopic.load("./bertopic-default")
+```
 
 ## Conclusion
+
+Ce tutoriel présente les bases théoriques nécessaires à la construction d'un outil de topic modelling.
