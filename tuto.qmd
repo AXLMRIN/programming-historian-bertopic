@@ -1,2 +1,0 @@
-# Explorer et classifier les thèmes d’un corpus de textes avec BERTopic et Python
-

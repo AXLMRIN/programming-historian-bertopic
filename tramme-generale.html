@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tramme-generale – programming historian</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">programming historian</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tuto.ipynb"> 
+<span class="menu-text">Notebook</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./tramme-generale.html" aria-current="page"> 
+<span class="menu-text">Tramme générale</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tuto.html"> 
+<span class="menu-text">Tuto rédigé</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#explorer-et-classifier-les-thèmes-dun-corpus-de-textes-avec-bertopic-et-python" id="toc-explorer-et-classifier-les-thèmes-dun-corpus-de-textes-avec-bertopic-et-python" class="nav-link active" data-scroll-target="#explorer-et-classifier-les-thèmes-dun-corpus-de-textes-avec-bertopic-et-python">Explorer et classifier les thèmes d’un corpus de textes avec BERTopic et Python</a>
+  <ul class="collapse">
+  <li><a href="#intro" id="toc-intro" class="nav-link" data-scroll-target="#intro">Intro</a>
+  <ul class="collapse">
+  <li><a href="#objectifs-de-la-leçon" id="toc-objectifs-de-la-leçon" class="nav-link" data-scroll-target="#objectifs-de-la-leçon">Objectifs de la leçon</a></li>
+  <li><a href="#prérequis" id="toc-prérequis" class="nav-link" data-scroll-target="#prérequis">Prérequis</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#matériel-disponible-et-environnement-virtuel" id="toc-matériel-disponible-et-environnement-virtuel" class="nav-link" data-scroll-target="#matériel-disponible-et-environnement-virtuel">Matériel disponible, et environnement virtuel</a>
+  <ul class="collapse">
+  <li><a href="#le-topic-modelling-une-tâche-répendue-en-sciences-sociales" id="toc-le-topic-modelling-une-tâche-répendue-en-sciences-sociales" class="nav-link" data-scroll-target="#le-topic-modelling-une-tâche-répendue-en-sciences-sociales">Le topic modelling, une tâche répendue en sciences sociales</a></li>
+  <li><a href="#comprendre-chaque-étape-de-la-pipeline" id="toc-comprendre-chaque-étape-de-la-pipeline" class="nav-link" data-scroll-target="#comprendre-chaque-étape-de-la-pipeline">Comprendre chaque étape de la pipeline</a>
+  <ul class="collapse">
+  <li><a href="#transformer-les-documents-en-vecteurs-mathématiques" id="toc-transformer-les-documents-en-vecteurs-mathématiques" class="nav-link" data-scroll-target="#transformer-les-documents-en-vecteurs-mathématiques">1. Transformer les documents en vecteurs mathématiques</a></li>
+  </ul></li>
+  <li><a href="#use-case" id="toc-use-case" class="nav-link" data-scroll-target="#use-case">Use case</a>
+  <ul class="collapse">
+  <li><a href="#introduction-au-jeu-de-données" id="toc-introduction-au-jeu-de-données" class="nav-link" data-scroll-target="#introduction-au-jeu-de-données">Introduction au jeu de données</a></li>
+  <li><a href="#créer-son-premier-topic-model" id="toc-créer-son-premier-topic-model" class="nav-link" data-scroll-target="#créer-son-premier-topic-model">Créer son premier topic model</a></li>
+  <li><a href="#afficher-les-résultats-sous-forme-de-graphe" id="toc-afficher-les-résultats-sous-forme-de-graphe" class="nav-link" data-scroll-target="#afficher-les-résultats-sous-forme-de-graphe">Afficher les résultats sous forme de graphe</a></li>
+  <li><a href="#mieux-choisir-ses-hyper-paramètres" id="toc-mieux-choisir-ses-hyper-paramètres" class="nav-link" data-scroll-target="#mieux-choisir-ses-hyper-paramètres">Mieux choisir ses hyper-paramètres</a></li>
+  <li><a href="#sauvegarder-les-données" id="toc-sauvegarder-les-données" class="nav-link" data-scroll-target="#sauvegarder-les-données">Sauvegarder les données</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="explorer-et-classifier-les-thèmes-dun-corpus-de-textes-avec-bertopic-et-python" class="level1">
+<h1>Explorer et classifier les thèmes d’un corpus de textes avec BERTopic et Python</h1>
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<section id="objectifs-de-la-leçon" class="level3">
+<h3 class="anchored" data-anchor-id="objectifs-de-la-leçon">Objectifs de la leçon</h3>
+<ul>
+<li>Introduction aux méthodes de topic modelling: Quelles méthodes existent ? Pour quelles tâches ? Dans quels contextes ?</li>
+<li>Introduire les concepts structurants de la librairie, et illustrer son utilisation</li>
+<li>Illustrer les commandes et visualisations principales</li>
+<li>Sensibiliser aux bonnes pratiques pour faciliter la reproductibilité et l’usage des modèles de langue.</li>
+</ul>
+</section>
+<section id="prérequis" class="level3">
+<h3 class="anchored" data-anchor-id="prérequis">Prérequis</h3>
+<p>Ce tutoriel requiert d’avoir une certaine aisance avec Python. Par exemple, nous n’expliquons pas :</p>
+<ul>
+<li>Comment initialiser son environnement et installer des paquets</li>
+<li>Les syntaxes de base de Python (fonctions, variables, conditions, loupes “for”) ni les manipulations Pandas de base comme l’ouverture de fichier ou les traitements usuels de création, suppression de colonnes ou lignes.</li>
+</ul>
+<p>Ce tutoriel aborde des notions de NLP de base (modèles de plongement, similarité sémantique) et nous faisons appel à des notions de Machine Learning (clustering, réduction de dimensionalité). Ce tutoriel présente comment les concepts s’articulent entre eux mais nous ne redéfinissons pas individuellement chaque terme. Nous renvoyons vers de nombreuses sources qui font ce travail.</p>
+<!-- TODO: Proposer des lectures avant de se lancer -->
+</section>
+</section>
+</section>
+<section id="matériel-disponible-et-environnement-virtuel" class="level1">
+<h1>Matériel disponible, et environnement virtuel</h1>
+<p>Dans le cadre de ce tutoriel, nous mettons a disposition plusieurs fichiers sur la plateforme <a href="https://zenodo.org/records/17936091">Zenodo</a>. Vous y trouverez:</p>
+<ul>
+<li>Le jeux de données complet nettoyé<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (700 Mo): La procédure de nettoyage des données est renseignée <a href="https://css-polytechnique.github.io/css-ipp-materials/pages/techy-notes.html#curations-of-the-original-dataset">ici (written in English)</a>.</li>
+<li>Un extrait stratifié du jeu de données[^info-stratification] (30 Mo): Pour chaque année, nous avons tiré 500 lignes. En tout, le jeu de données contient 6500 lignes.</li>
+<li>Un ensemble de jeux de plongements : En tout nous proposons 9 jeux de plongements pour 3 modèles différents (<a href="https://huggingface.co/Alibaba-NLP/gte-multilingual-base">Alibaba-NLP/gte-multilingual-base</a>, <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2">sentence-transformers/all-MiniLM-L6-v2</a>, <a href="https://huggingface.co/Qwen/Qwen3-0.6B">Qwen/Qwen3-0.6B</a>), deux langues (anglais, français) et deux techniques de génération (pipeline Huggingface ou SBERT). Ces jeux de données permettent d’explorer les variations de résultats selon les modifications décrites.</li>
+</ul>
+<div class="callout-info">
+<p>Ces données ont été rendues disponibles dans le cadre de la publication de ce tutoriel <a href="https://css-polytechnique.github.io/css-ipp-materials/pages/bertopic-tutorial.html">The General Inquirer in the time of LLMs: a BERTopic tutorial</a> en anglais, dont le présent tutoriel est une traduction.</p>
+</div>
+<p>Pour préparer votre espace Python, nous conseillons les versions suivantes:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bertopic==0.17.3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datasets==4.3.0</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>hdbscan==0.8.40</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>numpy==2.3.5</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pandas==2.3.3</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plotly==6.3.1</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>scikit_learn==1.8.0</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>stopwordsiso==0.6.1</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>transformers==4.52.4</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>umap_learn==0.5.7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="le-topic-modelling-une-tâche-répendue-en-sciences-sociales" class="level2">
+<h2 class="anchored" data-anchor-id="le-topic-modelling-une-tâche-répendue-en-sciences-sociales">Le topic modelling, une tâche répendue en sciences sociales</h2>
+<ul>
+<li>accroche:
+<ul>
+<li>What are the main issues addressed in a set of documents? Are those documents similar or discussing different matters? What is the most important topic? Delineating the main themes in a collection of documents is a common task in social sciences, particularly when exploring a new corpus.</li>
+</ul></li>
+<li>Histoire du topic modelling
+<ul>
+<li>Pendant longtemps ça s’est fait avec des LDAs + décrire le but + donner des sources et décrire leur recherche</li>
+<li>D’autres méthodes existent: Mentionner le NMF et LSA, Top2Vec (<a href="https://towardsdatascience.com/topic-modeling-with-lsa-plsa-lda-nmf-bertopic-top2vec-a-comparison-5e6ce4b1e4a5/#e768">ref</a> + <a href="https://www.frontiersin.org/journals/sociology/articles/10.3389/fsoc.2022.886498/full">papier comparaison</a> dénigré par Julien m’enfin bon)</li>
+<li>Définir ce qu’est BERTopic (bibliothèque Python en open source …)</li>
+<li>Introduire BERTopic en partant de l’intuition</li>
+<li>donner des exemples de sources et montrer que ça prend de l’importance</li>
+</ul></li>
+<li>Introduction du contenu de la leçon
+<ul>
+<li>Plan</li>
+<li>Introduction au jeu de données et au cas d’étude</li>
+</ul></li>
+</ul>
+</section>
+<section id="comprendre-chaque-étape-de-la-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="comprendre-chaque-étape-de-la-pipeline">Comprendre chaque étape de la pipeline</h2>
+<p>La pipeline de BERTopic est relativement simple. En entrée, on renseigne un certain nombre de documents et en sortie, on obtient un certains nombre de groupes (les <em>topics</em>) définis par des documents constitutifs du groupe, ainsi que des mots clefs spécifiques.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/ins-and-outs-sketch.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p>Voici un exemple de résultat sous forme de tableau récapitulatif et de visualisation des <em>topics</em>, leur taille et position les uns par rapport aux autres :</p>
+<!-- TODO : Rerun for texts in french -->
+<div id="tbl-final-example" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[10, 20, 20,50]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-final-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Topic information of the French theses after tuning the topic model
+</figcaption>
+<div aria-describedby="tbl-final-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Topic</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1601</td>
+<td style="text-align: left;">Physics and Applied Mathematics</td>
+<td style="text-align: left;">model study material property method phase surface field process thesis</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1275</td>
+<td style="text-align: left;">Biology and Health Research</td>
+<td style="text-align: left;">cell gene protein study expression role species response involve mouse</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1156</td>
+<td style="text-align: left;">Political Sciences, Law and Geography</td>
+<td style="text-align: left;">law legal study french language international teacher analysis public social</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1030</td>
+<td style="text-align: left;">Data Science</td>
+<td style="text-align: left;">propose datum model method base approach network thesis application algorithm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">631</td>
+<td style="text-align: left;">History and History of Art</td>
+<td style="text-align: left;">literary century study writing art time author history narrative period</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: left;">Mathematics</td>
+<td style="text-align: left;">graph prove study space class thesis chapter theorem random theory</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">328</td>
+<td style="text-align: left;">Psychology et Child Health</td>
+<td style="text-align: left;">study child patient infant adolescent disorder preterm social age intervention</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: left;">Economy</td>
+<td style="text-align: left;">monetary bank policy economic chapter financial country banking credit growth</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: left;">Chemistry and Nanotechnologies</td>
+<td style="text-align: left;">emulsion hydrogel microgels casein surface collagen property droplet quercetin gel</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/final.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p>Attardons nous quelques temps pour comprendre comment sont produits les <em>topics</em>. La pipeline de BERTopic peut être décrite en 3 grandes étapes:</p>
+<ol type="1">
+<li>Transformer les documents (textes) en vecteurs mathématiques. Il s’agit de générer des plongements (<em>embeddings</em>) grâce à un modèle de langage.</li>
+<li>Regrouper les plongements en groupes, dans l’espoir que ces groupes soient représentatifs de sujets latents dans notre corpus.</li>
+<li>Pour chaque groupe, identifier les mots clefs qui représentent le mieux la spécificité de chaque <em>topic</em>.</li>
+</ol>
+<p>Revenons plus précisément sur chaque étape et identifions les concepts clefs sur lesquelles se basent BERTopic:</p>
+<section id="transformer-les-documents-en-vecteurs-mathématiques" class="level3">
+<h3 class="anchored" data-anchor-id="transformer-les-documents-en-vecteurs-mathématiques">1. Transformer les documents en vecteurs mathématiques</h3>
+<p>Pour générer des plongements, ces vecteurs à plusieurs centaines de dimensions, nous utilisons des modèles de plongements. Ces modèles sont entraînés à reconnaître des motifs dans les textes observés et à distinguer des textes qui sont sémantiquements proches, de textes qui ne le sont pas. La force de ces modèles est d’encapsuler énormément d’informations présentes dans le texte dans un vecteur (représentation dense)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/similarity.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Schéma explicatif des modèles de plongements</figcaption>
+</figure>
+</div>
+<p>Dans le cas du Topic modelling, nous utilisons ces modèles dans l’espoir que les plongements générés encapsule une forme de motif: celui du thème abordé. Un texte abordant les effets de crises économiques sur la population Française devrait être sémantiquement plus proche d’un texte abordant les stratégies de financement de la transition écologique que d’un texte étudiant un accélérateur de particule.</p>
+<!-- MEH -->
+<p>Cependant, du fait du fléau de la dimension (<em>curse of dimensionality</em>), il est très difficile et couteux de regrouper des objets dans un espace à 500 dimensions. Ainsi, la procédure inclus une étape de réduction de dimensionalité, qui projette les objets dans un espace de 2 à 10 dimensions en général. Pour ce faire, on utilise l’algorithme <strong>UMAP</strong> pour sa capacité à conserver les structures locales et globales. Ainsi, malgré la réduction de dimensions, on conserve la structure générale de l’espace de plongement (deux documents radicalement différents resteront très éloignés) tout en conservant certains détails locaux.</p>
+<p><strong>2. Regrouper les documents</strong></p>
+<p>Pour cette tâche on utilise un algorithme de <em>clustering</em>. Cet algorithme a pour but de trouver un juste milieux pour obtenir des groupes denses</p>
+<p>Pour cette tâche on utilise l’algorithme HDBSCAN car il permet de repérer des groupes de forme, taille et densité différentes avec la possibilité de classifier certains documents comme “bruit” pour se concentrer sur des ensembles significatifs.</p>
+<!-- MEHHHHH -->
+<p><strong>3. Identifier les mots clefs qui représentent le mieux la spécificité de chaque topic.</strong></p>
+<p>Une fois que les groupes sont constitués, il nous reste à identifier les mots clefs qui représentent au mieux la spécificité de chaque <em>topic</em>. Pour ce faire, on utilise des techniques basées sur le comptage des mots en utilisant l’objet <code>CountVectorizer</code> de <code>scikit-learn</code>. On obtient alors une matrice <code>terme x document</code> auquel on applique une transformation proche de TF-IDF, appelée c-TF-IDF. Cette transformation a pour but de sélectionner les mots qui apparaissent le plus au sein du groupe, et n’apparaissent pas dans les autres.</p>
+<p><strong>En résumé</strong></p>
+<p>En résumé, on a les trois étapes suivantes:</p>
+<ol type="1">
+<li>Génération de plongements qui encapsulent la sémantique des textes avec SBERT, puis réduction du nombre de dimensions avec UMAP.</li>
+<li>Création de groupes de textes sémantiquement proches avec HDBSCAN. Chaque groupe trouvé représente potentiellement un théme latent dans le corpus.</li>
+<li>Identification de mots représentant au mieux un thème à partir d’une matrice <code>terme x document</code> et une transformation c-TF-IDF.</li>
+</ol>
+<p>Ces étapes sont représentées sur le schéma mis en avant dans la documentation:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/similarity.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Les 6 étapes clefs de BERTopic <a href="https://maartengr.github.io/BERTopic/algorithm/algorithm.html#visual-overview">source</a></figcaption>
+</figure>
+</div>
+<div class="callout-info">
+<p>Nous ne couvrons pas l’étape optionnelle n°7. Cette étape propose d’utiliser une IA générative pour décrire les thèmes trouvés.</p>
+</div>
+</section>
+</section>
+<section id="use-case" class="level2">
+<h2 class="anchored" data-anchor-id="use-case">Use case</h2>
+<section id="introduction-au-jeu-de-données" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-au-jeu-de-données">Introduction au jeu de données</h3>
+<p>Nous illustrons notre tutoriel en utilisant le registre des thèses mis à disposition par l’État français sur le site <a href="https://www.data.gouv.fr/datasets/theses-soutenues-en-france-depuis-1985/">data.gouv.fr</a> et qui répertorie l’ensemble des thèses défendues en France depuis 1985. Nous cherchons donc à explorer ce jeu de données afin de retrouver les grandes disciplines explorées par les doctorant.e.s en France à partir de leurs résumés. Ce registre a été plusieurs fois convoqué par la recherche pour étudier XXX. Il a l’avantage d’être relativement propre, avec peu de résumés manquants et des métadonnées qui nous seront utiles pour vérifier les résultats du topic model.</p>
+<p>Ce jeu de données a été nettoyés par nos soins<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, le nouveau jeu de données peut être téléchargé sur le dépot <a href="">Zenodo</a>. Nous avons tiré aléatoirement 6500 lignes avec une stratification par année. Nous avons choisi de nous concentrer sur les années 2010-2022 pour des raisons de qualité des données.</p>
+<p>Une étape majeur pour le topic modelling est le prétraitement des textes. Nous listons quelques pré-traitements :</p>
+<ul>
+<li>Qualité des textes: Il est important de connaître son jeu de données en le parcourant rapidement. Notamment, il peut contenir des artefacts qui peuvent bruiter les plongements (balises HTML, défauts d’encodage (i.e.&nbsp;accents mal repérés) …). La définition du “bruit” dépend de votre question de recherche, par exemple vous pourriez décider de garder ou pas les emojis. Enfin, les modèles de plongements ne nécessitent pas de retirer les “stop words” comme ça pouvait être le cas avec d’autres méthodes; Nous souhaitons conserver les stop words ainsi que la ponctuation.</li>
+<li>Éviter les doublons: Si votre jeu de données comporte de trop nombreux doublons, un document présent plusieurs fois peut devenir un thème à lui tout seul.</li>
+<li>Homogénéité du corpus: Le topic modelling utilise les saillance les plus fortes pour distinguer les thèmes. Ainsi, des documents de plusieurs sources peuvent générer des thèmes différents si leurs formes divergent fortement (ton, longueur, densité d’information, etc…). Dépendemment de votre question de recherche, vous pouvez vouloir conserver ces différences, ou bien les exclure.</li>
+<li>Language des documents: Dans la même veine que l’homogénéité discutée avant, la langue du document peut être une différente trop saillante. Une alternative est de traduire tous les textes dans une seule langue en amont.</li>
+<li>Longueur des documents: Les modèles de plongement présentent une limite de taille de texte (aussi appelée la limite de contexte). Il est donc nécessaire d’accorder le choix du modèle de plongement avec notre corpus.</li>
+</ul>
+</section>
+<section id="créer-son-premier-topic-model" class="level3">
+<h3 class="anchored" data-anchor-id="créer-son-premier-topic-model">Créer son premier topic model</h3>
+<p>Pour commencer, chargons notre jeu de données:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"./data/theses-soutenues-curated-stratified.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Le jeu de données présente plusieurs colonnes d’intérêt:</p>
+<ul>
+<li><code>CI</code>: un index.</li>
+<li><code>oai_set_specs</code>: un code de discipline, par exemple, <code>ddc:300</code> représente <code>Sciences sociales, sociologie et anthropologie</code>.</li>
+<li><code>resumes.en</code> et <code>resumes.fr</code>: les résumés des thèses en anglais et français</li>
+</ul>
+<p>D’autres colonnes existent (titre de la thèse, sujet proposé par l’auteur.ice); elles nous aideront à l’évaluation du modèle.</p>
+<p>Il nous suffit alors de choisir un modèle de plongement et créer une instance de <code>BERTopic</code> de la manière suivante:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bertopic <span class="im">import</span> BERTopic </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>topic_model <span class="op">=</span> BERTopic( </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    language <span class="op">=</span> <span class="st">"french"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    embedding_model <span class="op">=</span>  <span class="st">"Alibaba-NLP/gte-multilingual-base"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis de <em>“fit”</em> le modèle sur nos données :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>topic_model.fit(documents <span class="op">=</span> df[<span class="st">"resumes.fr"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Nota: la syntaxe <code>.fit</code>, <code>transform</code> et <code>fit_transform</code> reprend la syntaxe définie par Scikit-learn, l’une des premières librairies de Machine Learning et l’une des plus complète! La méthode <code>.fit</code> adapte un modèle à nos données, tandis que <code>.transform</code> permet d’utiliser le modèle pour faire des prédictions.</em></p>
+<p>Nous pouvons extraire les thèmes de la manière suivante:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>topics, probabilities <span class="op">=</span> topic_model.transform(documents<span class="op">=</span>df[<span class="st">"resumes.fr"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On obtient alors une liste de thèmes, assignant chaque thèse à un groupe, ainsi que des probabilités, un score traduisant la distance d’un document au groupe assigné.</p>
+<p>Nous pouvons extraire les informations des groupes comme ceci:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>topic_model.get_topic_info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<caption>Topic information of the French theses after tuning the topic model </caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;">Topic</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: left;">Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">2870</td>
+<td style="text-align: left;">[‘thèse’, ‘étude’, ‘travail’, ‘analyse’, ‘résultats’, ‘modèle’, ‘également’, ‘développement’, ‘système’, ‘partie’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: left;">[‘comportement’, ‘essais’, ‘matériaux’, ‘rupture’, ‘matériau’, ‘mécanique’, ‘mécaniques’, ‘déformation’, ‘fatigue’, ‘numérique’]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: left;">[‘écoulement’, ‘fluide’, ‘écoulements’, ‘méthode’, ‘numériques’, ‘numérique’, ‘modèle’, ‘flamme’, ‘acoustique’, ‘simulation’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: left;">[‘robot’, ‘images’, ‘objets’, ‘données’, ‘détection’, ‘méthodes’, ‘3d’, ‘proposons’, ‘robots’, ‘image’]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: left;">[‘ville’, ‘acteurs’, ‘politiques’, ‘urbaine’, ‘urbain’, ‘aménagement’, ‘agricoles’, ‘projets’, ‘développement’, ‘recherche’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: left;">…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">[‘gamma’, ‘trous’, ‘noirs’, ‘sursauts’, ‘lisa’, ‘primordiaux’, ‘eclairs’, ‘planck’, ‘univers’, ‘cmb’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">102</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">[‘bâtiment’, ‘air’, ‘ventilation’, ‘bâtiments’, ‘chaleur’, ‘thermique’, ‘mur’, ‘confort’, ‘rafraîchissement’, ‘paroi’]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">[‘espèces’, ‘anabaena’, ‘diversification’, ‘re’, ‘acanthomorphes’, ‘caractères’, ‘phylogénie’, ‘cardiodactylus’, ‘aee’, ‘myrte’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">[‘charges’, ‘électrique’, ‘matériaux’, ‘thermoélectriques’, ‘champ’, ‘diélectrique’, ‘permittivité’, ‘pedot’, ‘diélectriques’, ‘polymères’]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">[‘organisationnelle’, ‘dirigeant’, ‘entraide’, ‘réductions’, ‘effectifs’, ‘acceptation’, ‘comportement’, ‘socialisation’, ‘middle’, ‘performance’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">[‘croissance’, ‘cultures’, ‘production’, ‘microalgues’, ‘lignines’, ‘électrons’, ‘butyrate’, ‘mp’, ‘hp’, ‘hydrocarbures’]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>La colonne représentation renseigne les mots clefs identifiés pour chaque thème. On observe que les mots clefs du groupe bruit (groupe n°-1) ne donnent aucune information. Pour les autres sujets, on retrouve une suite de mots cohérents, par exemple:</p>
+<ul>
+<li>‘ville’, ‘acteurs’, ‘politiques’, ‘urbaine’ : ce groupe pourrait être représentatif d’un thème lié au à l’urbanisme.</li>
+<li>‘gamma’, ‘trous’, ‘noirs’, ‘planck’: ce groupe pourrait représenter un thème lié à l’étude des trous noirs.</li>
+<li>‘écoulement’, ‘fluide’, ‘écoulements’, ‘méthode’, ‘numériques’: ce groupe pourrait représenter un thème lié aux simulation de mécanique des fluides.</li>
+</ul>
+<p>Ce tableau <strong>n’est pas</strong> une preuve que le topic model soit satisfaisant, pour l’affirmer, nous devrons explorer chacun des groupes plus en détails. Cependant, trouver des groupes de mots cohérents est un bon signe.</p>
+<p>On voit aussi que la majorité des documents sont classifiés comme “bruit”. Ceci est le résultat normal de l’algorithme de clustering HDBSCAN qui se focalise sur des régions denses en premier lieu. Tous les thèmes comportent entre 10 et 200 documents, ce qui correspond à 0.1%, 3% du corpus entier.</p>
+<p>Nous pouvons forcer l’assignation d’un thème pour chaque document avec la commande suivante:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>topics_reduced <span class="op">=</span> topic_model.reduce_outliers(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    documents <span class="op">=</span> docs, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    topics <span class="op">=</span> topics, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    probabilities <span class="op">=</span> probabilities, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> embeddings,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    strategy<span class="op">=</span><span class="st">"embeddings"</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Cette commande n’a pas pour effet de recalculer les mots clefs</strong></p>
+</section>
+<section id="afficher-les-résultats-sous-forme-de-graphe" class="level3">
+<h3 class="anchored" data-anchor-id="afficher-les-résultats-sous-forme-de-graphe">Afficher les résultats sous forme de graphe</h3>
+<p>Dans cette section, on présente 3 graphes très pratiques pour explorer le topic model et commencer le travail d’évaluation.</p>
+<p><strong>2D plot</strong></p>
+<p>La première chose qu’on souhaite visualiser est l’espace de plongement projeté dans 2 dimensions. Cette visualisation permet de repérer les clusters, leur taille et leur emplacement les uns par rapport aux autres.</p>
+<p>GRAPHE</p>
+<p>SEED à utiliser: 42</p>
+<p>Sur le graphe, on peut voir que le thème “0_comportement_essais_matériaux” et “1_écoulement_fluide_écoulements” sont proches tandis que “3_ville_acteurs_politiques” est à l’opposé.</p>
+<p><strong>Visualiser les mots clefs par thème</strong></p>
+<p>Dans un deuxième temps, on peut représenter les <span class="math inline">\(n\)</span> mots représentant au mieux chaque thème. Cette représentation peut être utile pour analyser la cohérence interne de chaque thème.</p>
+<p>GRAPHE</p>
+<p>Par exemple, le thème n°4 identifie les mots clefs “poésie”, “poétique”, “oeuvres” ou encore “auteurs”. On constate que ces mots clefs sont cohérents ensemble et on peut facilement imaginer que ce thème regroupe des thèses de littérature qui étudient des oeuvres de poésie.</p>
+<p><strong>Arbres hiérarchiques</strong></p>
+<p>Enfin, pour comprendre l’agencement des thèmes les uns par rapport aux autres, on peut afficher le topic model sous forme d’un dendogramme. On lit ce graphe de la gauche vers la droite, deux thèmes proches seront regroupés ensemble, et leurs branches se joindront à gauche.</p>
+<p>GRAPHE</p>
+<p>Tout en haut de ce graphe, on peut notamment voir que des thèmes liés au droit, au droit constitutionnel et pénal sont placés très proches et que leurs branches se rejoignent très rapidement.</p>
+</section>
+<section id="mieux-choisir-ses-hyper-paramètres" class="level3">
+<h3 class="anchored" data-anchor-id="mieux-choisir-ses-hyper-paramètres">Mieux choisir ses hyper-paramètres</h3>
+<p>Dans la section précédente, nous avons utilisés les paramètres par défaut. Nous allons maintenant explorer l’espace des possibles et tenter de comprendre l’effet de chaque paramètre sur le topic model.</p>
+<p>Le premier hyperparamètre est le choix du modèle. En effet, la qualité des plongements, et donc la capacité à mesurer la distance sémantique entre deux document aura un impact majeur sur la capacité du topic model à générer des groupes cohérents.</p>
+<p>METTRE GRAPHES AVEC QWEN VS ALIBABA</p>
+<p>Une fois que l’on est assuré de la qualité des plongements, on peut modifier la granularité du topic model en modifiant les paramètres <code>n_neighbors</code> et <code>min_cluster_size</code>. Plus ces deux paramètres seront petits, plus le topic model sera spécifique, et donc, génerera des thèmes de quelques documents.</p>
+<p>Il est important de noter que ces paramètres dépendent de la taille du corpus! en effet, pour un corpus de 5 000 éléments, <code>n_neighbor=300</code> est une valeur très grande, mais pour un corpus de 50 000, cette valeur peut être moyenne.</p>
+<p>Pour modifier ces valeurs, on utilise les lignes suivantes:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> umap <span class="im">import</span> UMAP</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> hdbscan <span class="im">import</span> HDBSCAN</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create an HDBSCAN and UMAP models</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>hdbscan_model <span class="op">=</span> HDBSCAN(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    min_cluster_size<span class="op">=</span><span class="dv">70</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Default parameters </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    prediction_data<span class="op">=</span><span class="va">True</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>umap_model <span class="op">=</span> UMAP(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    n_neighbors <span class="op">=</span> <span class="dv">70</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Default parameters</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    metric <span class="op">=</span> <span class="st">"cosine"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    n_components <span class="op">=</span> <span class="dv">5</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    min_dist<span class="op">=</span><span class="fl">0.0</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    low_memory <span class="op">=</span> <span class="va">False</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Then create the instance, fit the model and extract the topics and probabilities</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>topic_model <span class="op">=</span> BERTopic(</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    language <span class="op">=</span> <span class="st">"french"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    vectorizer_model <span class="op">=</span> vectorizer_model,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    umap_model<span class="op">=</span> umap_model,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    hdbscan_model<span class="op">=</span>hdbscan_model</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>topics, probabilities <span class="op">=</span> topic_model.fit_transform(</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    documents<span class="op">=</span>docs, </span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    embeddings<span class="op">=</span>embeddings</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>avec ces paramètres on obtient les résultats suivant:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: right;">Topic</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: left;">Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1248</td>
+<td style="text-align: left;">[‘thèse’, ‘données’, ‘modèle’, ‘étude’, ‘résultats’, ‘analyse’, ‘méthode’, ‘travail’, ‘temps’, ‘système’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2582</td>
+<td style="text-align: left;">[‘étude’, ‘cellules’, ‘modèle’, ‘résultats’, ‘thèse’, ‘propriétés’, ‘permis’, ‘travail’, ‘montré’, ‘également’]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2063</td>
+<td style="text-align: left;">[‘étude’, ‘thèse’, ‘politique’, ‘recherche’, ‘analyse’, ‘travail’, ‘droit’, ‘politiques’, ‘pays’, ‘siècle’]</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">607</td>
+<td style="text-align: left;">[‘données’, ‘système’, ‘thèse’, ‘systèmes’, ‘problème’, ‘proposons’, ‘temps’, ‘modèle’, ‘approche’, ‘méthodes’]</td>
+</tr>
+</tbody>
+</table>
+<p>Enfin, il est possible de fusionner des thèmes de manière automatique avec la commande:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>topic_model.reduce_topics(docs <span class="op">=</span> docs, nr_topics<span class="op">=</span><span class="dv">7</span> <span class="op">+</span> <span class="dv">1</span>) <span class="co">#Add one to account for the noise</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Retrieve the updated topics and probabilities</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>topics_reduced, probabilities_reduced <span class="op">=</span> topic_model.topics_, topic_model.probabilities_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ou bien les fusionner à la main:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>topics_to_merge <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>topic_model.merge_topics(docs, topics_to_merge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sauvegarder-les-données" class="level3">
+<h3 class="anchored" data-anchor-id="sauvegarder-les-données">Sauvegarder les données</h3>
+<p>En dernier lieu on cherchera à sauvegarder nos données</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>La procédure de nettoyage des données est renseignée <a href="https://css-polytechnique.github.io/css-ipp-materials/pages/techy-notes.html#curations-of-the-original-dataset">ici (written in English)</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>La procédure de nettoyage des données est renseignée <a href="https://css-polytechnique.github.io/css-ipp-materials/pages/techy-notes.html#curations-of-the-original-dataset">ici (written in English)</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/AXLMRIN\.github\.io\/programming-historian-bertopic\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
