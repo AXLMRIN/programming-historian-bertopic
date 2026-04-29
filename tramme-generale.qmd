@@ -209,30 +209,30 @@ Nous pouvons extraire les informations des groupes comme ceci:
 topic_model.get_topic_info()
 ```
 
-|     |   Topic |   Count | Representation                                                                                                                                    |
-|----:|--------:|--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------|
-|   0 |      -1 |    2839 | ['de', 'la', 'et', 'des', 'les', 'en', 'le', 'une', 'dans', 'un']                                                                                 |
-|   1 |       0 |     170 | ['comportement', 'de', 'été', 'des', 'matériaux', 'la', 'est', 'en', 'par', 'essais']                                                             |
-|   2 |       1 |     155 | ['cellules', 'cancer', 'expression', 'patients', 'tumorale', 'dans', 'avons', 'de', 'tumeurs', 'que']                                             |
-|   3 |       2 |     153 | ['écoulement', 'est', 'de', 'fluide', 'un', 'méthode', 'pour', 'sont', 'la', 'écoulements']                                                       |
-|   4 |       3 |     145 | ['droit', 'juridique', 'droits', 'union', 'juge', 'international', 'européenne', 'il', 'la', 'du']                                                |
-'caractères', 'cardiodactylus', 'diversité', 'aee', 'myrte', 'morphologiques']            |
-| ... |     ... |      ... | ... |
-| 102 |     101 |      11 | ['arn', 'virus', 'polymérase', 'protéine', 'viral', 'coronavirus', 'génome', 'réplication', 'coiffe', 'protéines']                                |
-| 103 |     102 |      11 | ['tio2', 'photocatalytique', 'photocatalytiques', 'dégradation', 'photocatalyse', 'dégrader', 'acide', 'polluants', 'uv', 'fluoration']           |
-| 104 |     103 |      11 | ['frittage', 'céramiques', 'composites', 'sic', 'kaolins', 'zrc', 'propriétés', 'composition', 'pyc', 'phases']                                   |
-| 105 |     104 |      10 | ['électrique', 'permittivité', 'matériaux', 'diélectrique', 'champ', 'thermoélectriques', 'charges', 'composites', 'matériau', 'polymère']        |
-| 106 |     105 |      10 | ['tanins', 'composites', 'fibres', 'été', 'tanin', 'biosourcés', 'cab', 'lin', 'monomères', 'formulations']                                       |
-| 107 |     106 |      10 | ['finie', 'kcsm', 'systèmes', 'interaction', 'portée', 'noyaux', 'désintégration', 'particules', 'désordonnés', 'neutrinos']                      |
+|     |   Topic |   Count | Representation                                                                                                                                         |
+|----:|--------:|--------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   0 |      -1 |    2870 | ['thèse', 'étude', 'travail', 'analyse', 'résultats', 'modèle', 'également', 'développement', 'système', 'partie']                                     |
+|   1 |       0 |     180 | ['comportement', 'essais', 'matériaux', 'rupture', 'matériau', 'mécanique', 'mécaniques', 'déformation', 'fatigue', 'numérique']                       |
+|   2 |       1 |     156 | ['écoulement', 'fluide', 'écoulements', 'méthode', 'numériques', 'numérique', 'modèle', 'flamme', 'acoustique', 'simulation']                          |
+|   3 |       2 |     153 | ['robot', 'images', 'objets', 'données', 'détection', 'méthodes', '3d', 'proposons', 'robots', 'image']                                                |
+|   4 |       3 |     120 | ['ville', 'acteurs', 'politiques', 'urbaine', 'urbain', 'aménagement', 'agricoles', 'projets', 'développement', 'recherche']                           |
+|   ... |       ... |      ... | ... |
+| 102 |     101 |      11 | ['gamma', 'trous', 'noirs', 'sursauts', 'lisa', 'primordiaux', 'eclairs', 'planck', 'univers', 'cmb']                                                  |
+| 103 |     102 |      11 | ['bâtiment', 'air', 'ventilation', 'bâtiments', 'chaleur', 'thermique', 'mur', 'confort', 'rafraîchissement', 'paroi']                                 |
+| 104 |     103 |      11 | ['espèces', 'anabaena', 'diversification', 're', 'acanthomorphes', 'caractères', 'phylogénie', 'cardiodactylus', 'aee', 'myrte']                       |
+| 105 |     104 |      10 | ['charges', 'électrique', 'matériaux', 'thermoélectriques', 'champ', 'diélectrique', 'permittivité', 'pedot', 'diélectriques', 'polymères']            |
+| 106 |     105 |      10 | ['organisationnelle', 'dirigeant', 'entraide', 'réductions', 'effectifs', 'acceptation', 'comportement', 'socialisation', 'middle', 'performance']     |
+| 107 |     106 |      10 | ['croissance', 'cultures', 'production', 'microalgues', 'lignines', 'électrons', 'butyrate', 'mp', 'hp', 'hydrocarbures']                              |
+                   |
 
 : Topic information of the French theses after tuning the topic model 
 {tbl-colwidths="[10, 20, 20,50]"}
 
 La colonne représentation renseigne les mots clefs identifiés pour chaque thème. On observe que les mots clefs du groupe bruit (groupe n°-1) ne donnent aucune information. Pour les autres sujets, on retrouve une suite de mots cohérents, par exemple: 
 
-- "droit", "juridique", "juge", "international", "européenne" : ce groupe pourrait être représentatif d'un thème lié au Droit, et plus précisément sur les questions de relations internationnales.
-- "permittivité", "matériaux", "champ", "charges": ce groupe pourrait représenter un thème lié aux domaines de la Ingénierie, et plus précisément sur les effets électromagnétiques.
-- "bactéries", "souches", "antibiotiques": ce groupe pourrait représenter un thème lié aux domaines médicaux, et plus précisément sur la médicamentation.
+- 'ville', 'acteurs', 'politiques', 'urbaine' : ce groupe pourrait être représentatif d'un thème lié au à l'urbanisme.
+- 'gamma', 'trous', 'noirs', 'planck': ce groupe pourrait représenter un thème lié à l'étude des trous noirs.
+- 'écoulement', 'fluide', 'écoulements', 'méthode', 'numériques': ce groupe pourrait représenter un thème lié aux simulation de mécanique des fluides.
 
 Ce tableau **n'est pas** une preuve que le topic model soit satisfaisant, pour l'affirmer, nous devrons explorer chacun des groupes plus en détails. Cependant, trouver des groupes de mots cohérents est un bon signe.
 
@@ -258,10 +258,102 @@ Dans cette section, on présente 3 graphes très pratiques pour explorer le topi
 
 **2D plot**
 
-La première chose qu'on souhaite visualiser est l'espace 
+La première chose qu'on souhaite visualiser est l'espace de plongement projeté dans 2 dimensions. Cette visualisation permet de repérer les clusters, leur taille et leur emplacement les uns par rapport aux autres.
+
+GRAPHE
+
+SEED à utiliser: 42
+
+Sur le graphe, on peut voir que le thème "0_comportement_essais_matériaux" et "1_écoulement_fluide_écoulements" sont proches tandis que "3_ville_acteurs_politiques" est à l'opposé. 
+
+**Visualiser les mots clefs par thème**
+
+Dans un deuxième temps, on peut représenter les $n$ mots représentant au mieux chaque thème. Cette représentation peut être utile pour analyser la cohérence interne de chaque thème.
+
+GRAPHE
+ 
+Par exemple, le thème n°4 identifie les mots clefs "poésie", "poétique", "oeuvres" ou encore "auteurs". On constate que ces mots clefs sont cohérents ensemble et on peut facilement imaginer que ce thème regroupe des thèses de littérature qui étudient des oeuvres de poésie.
+
+**Arbres hiérarchiques** 
+
+Enfin, pour comprendre l'agencement des thèmes les uns par rapport aux autres, on peut afficher le topic model sous forme d'un dendogramme. On lit ce graphe de la gauche vers la droite, deux thèmes proches seront regroupés ensemble, et leurs branches se joindront à gauche. 
+
+GRAPHE 
+
+Tout en haut de ce graphe, on peut notamment voir que des thèmes liés au droit, au droit constitutionnel et pénal sont placés très proches et que leurs branches se rejoignent très rapidement.
 
 ### Mieux choisir ses hyper-paramètres
 
+Dans la section précédente, nous avons utilisés les paramètres par défaut. Nous allons maintenant explorer l'espace des possibles et tenter de comprendre l'effet de chaque paramètre sur le topic model.
+
+Le premier hyperparamètre est le choix du modèle. En effet, la qualité des plongements, et donc la capacité à mesurer la distance sémantique entre deux document aura un impact majeur sur la capacité du topic model à générer des groupes cohérents. 
+
+METTRE GRAPHES AVEC QWEN VS ALIBABA 
+
+Une fois que l'on est assuré de la qualité des plongements, on peut modifier la granularité du topic model en modifiant les paramètres `n_neighbors` et `min_cluster_size`. Plus ces deux paramètres seront petits, plus le topic model sera spécifique, et donc, génerera des thèmes de quelques documents.
+
+Il est important de noter que ces paramètres dépendent de la taille du corpus! en effet, pour un corpus de 5 000 éléments, `n_neighbor=300` est une valeur très grande, mais pour un corpus de 50 000, cette valeur peut être moyenne.
+
+Pour modifier ces valeurs, on utilise les lignes suivantes: 
+
+```python 
+from umap import UMAP
+from hdbscan import HDBSCAN
+
+# create an HDBSCAN and UMAP models
+hdbscan_model = HDBSCAN(
+    min_cluster_size=70, 
+    # Default parameters 
+    prediction_data=True
+)
+umap_model = UMAP(
+    n_neighbors = 70,
+    # Default parameters
+    metric = "cosine",
+    n_components = 5,
+    min_dist=0.0,
+    low_memory = False 
+)
+
+# Then create the instance, fit the model and extract the topics and probabilities
+topic_model = BERTopic(
+    language = "french",
+    vectorizer_model = vectorizer_model,
+    umap_model= umap_model,
+    hdbscan_model=hdbscan_model
+)
+topics, probabilities = topic_model.fit_transform(
+    documents=docs, 
+    embeddings=embeddings
+)
+```
+
+avec ces paramètres on obtient les résultats suivant: 
+
+|    |   Topic |   Count | Representation                                                                                                  |
+|---:|--------:|--------:|:----------------------------------------------------------------------------------------------------------------|
+|  0 |      -1 |    1248 | ['thèse', 'données', 'modèle', 'étude', 'résultats', 'analyse', 'méthode', 'travail', 'temps', 'système']       |
+|  1 |       0 |    2582 | ['étude', 'cellules', 'modèle', 'résultats', 'thèse', 'propriétés', 'permis', 'travail', 'montré', 'également'] |
+|  2 |       1 |    2063 | ['étude', 'thèse', 'politique', 'recherche', 'analyse', 'travail', 'droit', 'politiques', 'pays', 'siècle']     |
+|  3 |       2 |     607 | ['données', 'système', 'thèse', 'systèmes', 'problème', 'proposons', 'temps', 'modèle', 'approche', 'méthodes'] |
+
+Enfin, il est possible de fusionner des thèmes de manière automatique avec la commande: 
+
+```python
+topic_model.reduce_topics(docs = docs, nr_topics=7 + 1) #Add one to account for the noise
+#Retrieve the updated topics and probabilities
+topics_reduced, probabilities_reduced = topic_model.topics_, topic_model.probabilities_
+```
+
+Ou bien les fusionner à  la main: 
+
+```python
+topics_to_merge = [1, 2, 3]
+topic_model.merge_topics(docs, topics_to_merge)
+```
+
 ### Sauvegarder les données
+
+En dernier lieu on cherchera à sauvegarder nos données
 
 ## Conclusion
